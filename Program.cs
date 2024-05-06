@@ -1,6 +1,5 @@
 ﻿using ETLProjectCSVToSQL.Services;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
 class Program
 {
@@ -10,7 +9,8 @@ class Program
 
         var builder = new ConfigurationBuilder()
                             .SetBasePath(Path.GetDirectoryName(configPath))
-                            .AddJsonFile(Path.GetFileName(configPath), optional: true, reloadOnChange: true);
+                            .AddJsonFile(Path.GetFileName(configPath), optional: true, reloadOnChange: true)
+                            .AddUserSecrets<Program>(); 
 
         IConfiguration config = builder.Build();
 
